@@ -25,13 +25,7 @@ catch (PDOException $e) {
     die(print_r($e));
 }
 
-if (!$conn)
 
-  {
-
-  die('Could not connect: ');
-
-  }
 
  
 
@@ -44,13 +38,14 @@ VALUES ('$_POST[sid]',$_POST[roll],'$_POST[lname]','$_POST[fname]',$_POST[gpa], 
 
  
 
-if (!$conn->query($sql))
-
-  {
-
-  die('Error: ' );
-
-  }
+try{
+ $conn->query($sql);
+}
+ catch(PDOException $r)
+ {
+  Print("$r");
+ }
+ 
 
 echo "1 record added";
 
