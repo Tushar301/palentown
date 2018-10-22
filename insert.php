@@ -11,19 +11,30 @@
 
 <?php
 
-$con = mysql_connect("tcp:studenthello.database.windows.net","Vegeta","Tushargupta@123");
+ 
+ $hostname='tcp:studenthello.database.windows.net';
+$username='Vegeta';
+$password='Tushargupta@123';
 
-if (!$con)
+try {
+    $conn = new PDO("sqlsrv:server = tcp:studenthello.database.windows.net,1433; Database = UniversityDB", "Vegeta", "{your_password_here}");
+    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+}
+catch (PDOException $e) {
+    print("Error connecting to SQL Server.");
+    die(print_r($e));
+}
+
+if (!$conn)
 
   {
 
-  die('Could not connect: ' . mysql_error());
+  die('Could not connect: ');
 
   }
 
  
 
-mysql_select_db("UniversityDB", $con);
 
  
 
@@ -33,11 +44,11 @@ VALUES ('$_POST[sid]',$_POST[roll],'$_POST[lname]','$_POST[fname]',$_POST[gpa], 
 
  
 
-if (!mysql_query($sql,$con))
+if (!$conn->query($sql))
 
   {
 
-  die('Error: ' . mysql_error());
+  die('Error: ' );
 
   }
 
@@ -45,7 +56,7 @@ echo "1 record added";
 
  
 
-mysql_close($con)
+$conn->close($con)
 
 ?>
 
