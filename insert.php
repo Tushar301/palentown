@@ -17,7 +17,7 @@ $username='Vegeta';
 $password='Tushargupta@123';
 
 try {
-    $conn = new PDO("sqlsrv:server = tcp:studenthello.database.windows.net,1433; Database = UniversityDB", "Vegeta", "{your_password_here}");
+    $conn = new PDO("sqlsrv:server = tcp:studenthello.database.windows.net,1433; Database = UniversityDB", "Vegeta", "Tushargupta@123");
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 }
 catch (PDOException $e) {
